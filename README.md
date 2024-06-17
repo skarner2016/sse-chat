@@ -1,9 +1,6 @@
 # sse-chat
 基于 SSE(Server-Sent Events) 技术，实现聊天室功能
 
-
-# PHP不使用websocket实现聊天室功能
-
 ### 0. 实现聊天室的功能方式有很多种，比如轮询、websocket、SSE(Server-Sent Events)，我们来对比一下各种方式的区别
 
 |  实现方式    |   优点 | 缺点  | 使用场景|
