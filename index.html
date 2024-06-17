@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE Chat</title>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof (EventSource) !== "undefined") {
+                const source = new EventSource('sse.php');
+
+                source.addEventListener('update', function (event) {
+                    const data = JSON.parse(event.data);
+                    const messageElement = document.createElement('p');
+                    messageElement.textContent = data.created_at + "  " + data.name + ":" + data.message;
+                    document.getElementById('messages').appendChild(messageElement);
+                    console.log('id:', data.id);
+                });
+
+                source.addEventListener('close', function (event) {
+                    const messageElement = document.createElement('p');
+                    messageElement.textContent = "Connection closed by server.";
+                    document.getElementById('messages').appendChild(messageElement);
+                    source.close();
+                });
+            } else {
+                alert("Your browser does not support Server-Sent Events.");
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>SSE Chat</h1>
+    <div id="messages"></div>
+</body>
+</html>
