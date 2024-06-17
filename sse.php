@@ -22,15 +22,15 @@ while (true) {
     }
 
     foreach ($messageList as $message) {
-        $message = json_decode($message, true);
+        $message     = json_decode($message, true);
         $lastEventId = $id = $message['id'];
         // 推送数据到客户端
         echo "id: " . $id . "\n";
         echo "event: update\n";
         echo "data: " . json_encode($message, JSON_UNESCAPED_UNICODE) . "\n\n";
-        ob_flush();
-        flush();
     }
+    ob_flush();
+    flush();
 
     usleep(500);
 }
